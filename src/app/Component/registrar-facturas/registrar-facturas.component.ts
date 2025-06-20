@@ -3,7 +3,7 @@ import { FacturaService } from '../../Services/factura/factura.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AlertService } from '../../Services/alertas/alertService.service';
 import { Factura } from '../../Services/factura/factura';
-import { ProveedorService } from '../../Services/proveedor/proveedor.service';
+import { ProveedorMongo, ProveedorService } from '../../Services/proveedor/proveedor.service';
 import { Proveedor } from '../../Services/proveedor/proveedor';
 
 @Component({
@@ -16,7 +16,7 @@ export class RegistrarFacturasComponent implements OnInit{
   @Output() facturaCreada = new EventEmitter<boolean>();
 
   facturas:Factura[] = []
-  proveedores:Proveedor[]=[]
+  proveedores:ProveedorMongo[]=[]
   proveedor!:Proveedor
 
 
@@ -33,7 +33,7 @@ export class RegistrarFacturasComponent implements OnInit{
   }
 
   obtenerProveedores(){
-    this.proveedorService.obtenerProveedors().subscribe((proveedores)=>{
+    this.proveedorService.obtenerProveedoresMongo().subscribe((proveedores)=>{
       this.proveedores = proveedores
     })
   }

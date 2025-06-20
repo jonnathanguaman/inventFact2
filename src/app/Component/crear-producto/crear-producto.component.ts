@@ -1,9 +1,9 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { ProductoService } from '../../Services/producto/producto.service';
+import { ProductoMongo, ProductoService } from '../../Services/producto/producto.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Producto } from '../../Services/producto/procuto';
 import { AlertService } from '../../Services/alertas/alertService.service';
-import { ProveedorService } from '../../Services/proveedor/proveedor.service';
+import { ProveedorMongo, ProveedorService } from '../../Services/proveedor/proveedor.service';
 import { Proveedor } from '../../Services/proveedor/proveedor';
 import { CategoriaService } from '../../Services/categoria/categoria.service';
 import { Categoria } from '../../Services/categoria/categoria';
@@ -17,7 +17,7 @@ export class CrearProductoComponent implements OnInit{
 
   @Output() productoCreado = new EventEmitter<boolean>();
 
-  proveedores:Proveedor[]=[]
+  proveedores:ProveedorMongo[]=[]
   proveedor!:Proveedor
   categorias:Categoria[]=[]
 
@@ -35,7 +35,7 @@ export class CrearProductoComponent implements OnInit{
   }
 
   obtenerProveedores(){
-    this.proveedorService.obtenerProveedors().subscribe((proveedores)=>{
+    this.proveedorService.obtenerProveedoresMongo().subscribe((proveedores)=>{
       this.proveedores = proveedores
     })
   }
@@ -78,7 +78,7 @@ export class CrearProductoComponent implements OnInit{
 
   crearProducto(){
     console.log(this.productoForm.value)
-    this.productoService.crearProducto(this.productoForm.value as unknown as Producto).subscribe({
+    this.productoService.crearProductoMongo(this.productoForm.value as unknown as ProductoMongo).subscribe({
       next:()=>{
         this.alertaService.mensajeToast('success','Producto registrado con exito','')
       },

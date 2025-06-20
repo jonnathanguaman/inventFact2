@@ -6,7 +6,7 @@ import { environment } from '../../../enviroment/enviroment';
 
 // Interface para MongoDB (coincide exactamente con el backend)
 export interface ProductoMongo {
-  id?: string;
+  id: string;
   nombreProducto: string;
   cantidadDisponoble: number; // Mantengo el typo igual que en el backend
   disponibilidad: boolean;
@@ -23,22 +23,10 @@ export interface ProductoMongo {
 export class ProductoService {
 
   private readonly baseUrlMongo = environment.urlhost + '/api/mongo/productos';
-  private readonly baseUrlMySQL = environment.urlhost + '/producto/';
 
   constructor(private readonly http: HttpClient) { }
 
   // ========== MÉTODOS ORIGINALES (MySQL/JPA) ==========
-  crearProducto(producto: Producto): Observable<Producto> {
-    return this.http.post<Producto>(this.baseUrlMySQL, producto);
-  }
-
-  obtenerProductos(): Observable<Producto[]> {
-    return this.http.get<Producto[]>(this.baseUrlMySQL);
-  }
-
-  eliminarProducto(idProducto: number): Observable<Producto> {
-    return this.http.delete<Producto>(`${this.baseUrlMySQL}${idProducto}`);
-  }
   // ========== MÉTODOS MONGO ==========
   
   // Crear producto en MongoDB

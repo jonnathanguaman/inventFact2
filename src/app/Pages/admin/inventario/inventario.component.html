@@ -16,8 +16,6 @@
                   <th>Precio</th>
                   <th>Fecha de registro</th>
                   <th>Visible</th>
-                  <th>Proveedor</th>
-                  <th>Categoria</th>
                   <th>Acciones</th>
               </tr>
           </thead>
@@ -29,11 +27,9 @@
                   <td>{{auxproductos.precio}}</td>
                   <td>{{auxproductos.fechaIngreso | date:'dd/mm/yyyy'}}</td>
                   <td>{{auxproductos.visible}}</td>
-                  <td>{{auxproductos.proveedor.nombreProveedor}}</td>
-                  <td>{{auxproductos.categoria.nombreCategoria}}</td>
                   <td>
                       <button class="edit-btn">Editar</button>
-                      <button (click)="eliminarProducto(auxproductos.idProducto)" class="delete-btn">Eliminar</button>
+                      <button (click)="eliminarProducto(auxproductos.id)" class="delete-btn">Eliminar</button>
                   </td>
               </tr>
           </tbody>

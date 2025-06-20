@@ -4,7 +4,7 @@ import { Cliente } from '../../Services/cliente/cliente';
 import { Producto } from '../../Services/producto/procuto';
 import { FacturaencabezadoService } from '../../Services/facturaEncabezado/facturaencabezado.service';
 import { FacturaRequestDTO } from '../../Services/facturaEncabezado/factura.model';
-import { ProductoService } from '../../Services/producto/producto.service';
+import { ProductoMongo, ProductoService } from '../../Services/producto/producto.service';
 import { Subject, takeUntil } from 'rxjs';
 import { environment } from '../../../enviroment/enviroment';
 import { AlertService } from '../../Services/alertas/alertService.service';
@@ -20,7 +20,7 @@ export class CrearFacturaComponent {
   
   form: FormGroup;
   clientes: Cliente[] = [];
-  productos: Producto[] = [];
+  productos: ProductoMongo[] = [];
   total:number = 0;
   private readonly destroy$ = new Subject<void>();
 
@@ -41,7 +41,7 @@ export class CrearFacturaComponent {
   }
 
   ngOnInit(): void {
-    this.productoService.obtenerProductos().subscribe(productos => this.productos = productos);
+    this.productoService.obtenerProductosMongo().subscribe(productos => this.productos = productos);
     this.api.getClientes().subscribe(c => this.clientes = c);
     this.addDetalle();
   }
@@ -85,7 +85,7 @@ export class CrearFacturaComponent {
       const cantidad = control.get('cantidad')?.value || 0;
 
       if (productoId && cantidad > 0) {
-        const producto = this.productos.find(p => p.idProducto == productoId);
+        const producto = this.productos.find(p => p.id == productoId);
         if (producto) {
           if (cantidad > producto.cantidadDisponoble) {
             this.alertaService.mensajeConfirmacion('Error',`Stock insuficiente para el producto "${producto.nombreProducto}". Stock disponible: ${producto.cantidadDisponoble}`,'error');

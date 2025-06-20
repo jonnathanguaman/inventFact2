@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductoService } from '../../../Services/producto/producto.service';
-import { Producto } from '../../../Services/producto/procuto';
+import { ProductoMongo, ProductoService } from '../../../Services/producto/producto.service';
 import { AlertService } from '../../../Services/alertas/alertService.service'; 
 
 @Component({
@@ -11,7 +10,7 @@ import { AlertService } from '../../../Services/alertas/alertService.service';
 export class InventarioComponent implements OnInit {
   
   abrirModalCrearProductoSelector:boolean = false;
-  productos:Producto[]=[]
+  productos:ProductoMongo[]=[]
 
   abrirModalCrearProducto(){
     this.abrirModalCrearProductoSelector = true
@@ -21,7 +20,7 @@ export class InventarioComponent implements OnInit {
     if (isCreated) {
       console.log("El producto fue creado exitosamente");
       this.abrirModalCrearProductoSelector = false
-      this.obtenerProductos();
+      this.obtenerProductosMongo();
     }
   }
 
@@ -31,11 +30,11 @@ export class InventarioComponent implements OnInit {
   ){}
 
   ngOnInit(): void {
-    this.obtenerProductos()
+    this.obtenerProductosMongo()
   }
 
-  obtenerProductos(){
-    this.productoService.obtenerProductos().subscribe({
+  obtenerProductosMongo(){
+    this.productoService.obtenerProductosMongo().subscribe({
       next:(productos)=>{
         this.productos = productos
         console.log(productos)
@@ -49,15 +48,15 @@ export class InventarioComponent implements OnInit {
     })
   }
   
-  eliminarProducto(idProducto:number){
+  eliminarProducto(idProducto:string){
     this.alertService.mensajeEmergente('Eliminar','¿Estas seguro que deseas eliminar el producto?','warning').then((confirmacio)=>{
       if(confirmacio){
-        this.productoService.eliminarProducto(idProducto).subscribe({
+        this.productoService.eliminarProductoMongo(idProducto).subscribe({
           next:()=>{
             this.alertService.mensajeToast('success','Producto eliminado','')
           },
           complete:()=>{
-          this.obtenerProductos();
+          this.obtenerProductosMongo();
           }
         })
       }

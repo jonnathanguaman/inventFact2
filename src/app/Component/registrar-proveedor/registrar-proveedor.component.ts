@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { ProveedorService } from '../../Services/proveedor/proveedor.service';
+import { ProveedorMongo, ProveedorService } from '../../Services/proveedor/proveedor.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Proveedor } from '../../Services/proveedor/proveedor';
 import { AlertService } from '../../Services/alertas/alertService.service';
@@ -33,7 +33,7 @@ export class RegistrarProveedorComponent {
   }
 
   registarProveedor(){
-      this.proveedorService.crearProveedor(this.proveedorForm.value as unknown as Proveedor).subscribe({
+      this.proveedorService.crearProveedorMongo(this.proveedorForm.value as unknown as ProveedorMongo).subscribe({
         next:()=>{
           this.alertaService.mensajeToast('success','Proveedor registrado con exito','')
         },

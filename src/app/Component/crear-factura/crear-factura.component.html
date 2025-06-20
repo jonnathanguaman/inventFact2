@@ -20,7 +20,7 @@
         <label for="producto-{{i}}">Producto:</label>
         <select id="producto-{{i}}" formControlName="productoId">
           <option value="" disabled selected>Seleccione un producto</option>
-          <option *ngFor="let p of productos" [value]="p.idProducto">
+          <option *ngFor="let p of productos" [value]="p.id">
             {{ p.nombreProducto }} - ${{ p.precio }}
           </option>
         </select>

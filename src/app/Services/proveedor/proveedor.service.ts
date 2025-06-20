@@ -6,7 +6,7 @@ import { environment } from '../../../enviroment/enviroment';
 
 // Interface para MongoDB (coincide exactamente con el backend)
 export interface ProveedorMongo {
-  id?: string;
+  id: string;
   nombreProveedor: string;
   rucProveedor: string;
   productosIds?: string[];
@@ -23,18 +23,6 @@ export class ProveedorService {
 
   constructor(private readonly http: HttpClient) { }
   
-  // ========== MÉTODOS ORIGINALES (MySQL/JPA) ==========
-  crearProveedor(proveedor: Proveedor): Observable<Proveedor> {
-    return this.http.post<Proveedor>(this.baseUrlMySQL, proveedor);
-  }
-
-  obtenerProveedors(): Observable<Proveedor[]> {
-    return this.http.get<Proveedor[]>(this.baseUrlMySQL);
-  }
-
-  eliminarProveedor(idProveedor: number): Observable<Proveedor> {
-    return this.http.delete<Proveedor>(`${this.baseUrlMySQL}${idProveedor}`);
-  }
   // ========== MÉTODOS MONGO ==========
   
   // Crear proveedor en MongoDB
