@@ -1,0 +1,52 @@
+<div class="productos-container">
+  <h2 class="table-title">Productos</h2>
+
+  <div class="top-bar">
+      <button (click)="abrirModalCrearProducto()" class="btn-crear">Crear producto</button>
+      <input type="text" id="search" class="search-input" placeholder="Buscar productos..." />
+  </div>
+
+  <div class="table-wrapper">
+      <table class="product-table">
+          <thead>
+              <tr>
+                  <th>Nombre</th>
+                  <th>Cantidad</th>
+                  <th>Disponibilidad</th>
+                  <th>Precio</th>
+                  <th>Fecha de registro</th>
+                  <th>Visible</th>
+                  <th>Proveedor</th>
+                  <th>Categoria</th>
+                  <th>Acciones</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor="let auxproductos of productos">
+                  <td>{{auxproductos.nombreProducto}}</td>
+                  <td>{{auxproductos.cantidadDisponoble}}</td>
+                  <td>{{auxproductos.disponibilidad}}</td>
+                  <td>{{auxproductos.precio}}</td>
+                  <td>{{auxproductos.fechaIngreso | date:'dd/mm/yyyy'}}</td>
+                  <td>{{auxproductos.visible}}</td>
+                  <td>{{auxproductos.proveedor.nombreProveedor}}</td>
+                  <td>{{auxproductos.categoria.nombreCategoria}}</td>
+                  <td>
+                      <button class="edit-btn">Editar</button>
+                      <button (click)="eliminarProducto(auxproductos.idProducto)" class="delete-btn">Eliminar</button>
+                  </td>
+              </tr>
+          </tbody>
+      </table>
+  </div>
+</div>
+
+
+<!-- Crear factura -->
+<div *ngIf="abrirModalCrearProductoSelector" class="modal-overlay">
+    <div class="modal-content">
+      <a class="close-button" (click)="cierraModalProductoCreado(true)">&times;</a>
+      <app-crear-producto (productoCreado)="cierraModalProductoCreado($event)"></app-crear-producto>
+    </div>
+  </div>
+  

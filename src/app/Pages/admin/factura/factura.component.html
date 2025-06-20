@@ -1,0 +1,59 @@
+<div class="productos-container">
+    <h2 class="table-title">Facturas de proveedores</h2>
+  
+    <div class="top-bar">
+        <button (click)="abrirModalRegistrarFctura()" class="btn-crear">Registrar facturas</button>
+        <input type="text" id="search" class="search-input" placeholder="Buscar productos..." />
+    </div>
+  
+    <div class="table-wrapper">
+        <table class="product-table">
+            <thead>
+                <tr>
+                    <th>Numero factura</th>
+                    <th>Fecha emisión</th>
+                    <th>Valor pagado</th>
+                    <th>Estado del pago</th>
+                    <th>Productos registrados</th>
+                    <th>Visible</th>
+                    <th>Proveedor</th>
+                    <th>Ver pdf</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let auxFacturas of facturas">
+                    <td>{{auxFacturas.numeroFactura}}</td>
+                    <td>{{auxFacturas.fechaEmision | date:'dd/mm/yyyy'}}</td>
+                    <td>{{auxFacturas.total}}</td>
+                    <td>{{auxFacturas.estadoDePago}}</td>
+                    <td>{{auxFacturas.productosRegistrados }}</td>
+                    <td>{{auxFacturas.visible}}</td>
+                    <td>{{auxFacturas.proveedor.nombreProveedor}}</td>
+                    <td><a class="view-pdf-btn" (click)="verPdf(auxFacturas.urlPdf)">📄</a></td>
+                    <td>
+                        <button class="edit-btn">Editar</button>
+                        <button class="delete-btn">Eliminar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+  </div>
+  
+  
+  <!-- Crear factura -->
+  <div *ngIf="abrirModalRegistrarFacturasSelector" class="modal-overlay">
+      <div class="modal-content">
+        <a class="close-button" (click)="cierraModalRegistrarFctura(true)">&times;</a>
+        <app-registrar-facturas (facturaCreada)="cierraModalRegistrarFctura($event)"></app-registrar-facturas>
+      </div>
+    </div>
+    
+    <div *ngIf="mostrarPdf" class="modal-overlay" (click)="cerrarModalPdf()">
+        <div class="modal-content-pdf" (click)="$event.stopPropagation()">
+          <a class="close-button-pdf" (click)="cerrarModalPdf()">&times;</a>
+          <iframe [src]="sanitizarUrl(pdfSrc)" class="frame-pdf"></iframe>
+        </div>
+    </div>
+      

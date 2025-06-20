@@ -1,0 +1,149 @@
+.Registro-container {
+    background-color: #f5f5f5;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.form-container {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    width: 40%;
+    text-align: center;
+}
+
+.form-logo {
+    margin-top: -50px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.form-logo img {
+    width: 60px;
+    height: auto;
+}
+
+.form-title h1 {
+    font-size: 24px;
+    color: #2c3e50;
+    margin-bottom: 1rem;
+}
+
+.form-data-header p {
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+    text-align: left;
+}
+
+.form-row {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.half-width {
+    flex: 1;
+}
+
+.form-group label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 0.25rem;
+    color: #2c3e50;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+.form-group input:focus {
+    border-color: #4A90E2;
+    box-shadow: 0 0 0 1px #4A90E2;
+}
+
+.form-group button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4A90E2;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.form-group button:hover {
+    background-color: #357ABD;
+}
+
+.volver-flotante {
+    margin-left: -20px;
+    margin-top: -20px;
+    font-size: 2.5rem;
+    color: #ffffff;
+    background-color: #4A90E2;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.volver-flotante:hover {
+  background-color: #357ABD;
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+
+@media screen and (max-width: 768px) {
+    .form-container {
+        width: 80%;
+    }
+}
+
+
+.flecha-izquierda {
+    margin-left: -10px;
+    width: 0;
+    height: 0;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-right: 12px solid #f7f7f7; 
+    position: relative;
+    transform: rotate(0deg);
+}
+
+.flecha-izquierda::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 8px;
+  width: 10px;
+  height: 6px;
+  background-color: #f7f7f7;
+  transform: translateY(-50%);
+}

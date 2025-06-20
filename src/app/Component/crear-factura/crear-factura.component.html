@@ -1,0 +1,47 @@
+<!-- Mejorado: crear-factura.component.html -->
+<h2>Crear Factura</h2>
+
+<form [formGroup]="form" (ngSubmit)="enviarFactura()" class="factura-form">
+  <div class="form-group">
+    <label for="cliente">Cliente:</label>
+    <select id="cliente" formControlName="clienteId" required>
+      <option value="" disabled selected>Seleccione un cliente</option>
+      <option *ngFor="let cliente of clientes" [value]="cliente.id">
+        {{ cliente.nombre }} - {{ cliente.cedulaRuc }}
+      </option>
+    </select>
+  </div>
+
+  <hr>
+
+  <div formArrayName="detalles">
+    <div *ngFor="let detalle of detalles.controls; let i = index" [formGroupName]="i" class="detalle-row">
+      <div class="form-group">
+        <label for="producto-{{i}}">Producto:</label>
+        <select id="producto-{{i}}" formControlName="productoId">
+          <option value="" disabled selected>Seleccione un producto</option>
+          <option *ngFor="let p of productos" [value]="p.idProducto">
+            {{ p.nombreProducto }} - ${{ p.precio }}
+          </option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="cantidad-{{i}}">Cantidad:</label>
+        <input id="cantidad-{{i}}" type="number" formControlName="cantidad" min="1">
+      </div>
+
+      <button type="button" class="btn-eliminar" (click)="removeDetalle(i)" *ngIf="detalles.length > 1">Eliminar</button>
+    </div>
+  </div>
+
+  <button type="button" class="btn-agregar" (click)="addDetalle()">Agregar Producto</button>
+
+  <div class="total-factura">
+    <strong>Total: </strong> ${{ total | number:'1.2-2' }}
+  </div>
+
+  <hr>
+
+  <button type="submit" class="btn-submit" [disabled]="form.invalid">Crear Factura</button>
+</form>

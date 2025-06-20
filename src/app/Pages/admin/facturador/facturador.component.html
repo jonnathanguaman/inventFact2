@@ -1,0 +1,42 @@
+<div class="productos-container">
+    <h2 class="table-title">Facturas</h2>
+  
+    <div class="top-bar">
+        <button (click)="abrirModalRegistrarFctura()" class="btn-crear">Registrar facturas</button>
+        <input type="text" id="search" class="search-input" placeholder="Buscar productos..." />
+    </div>
+  
+    <div class="table-wrapper">
+        <table class="product-table">
+            <thead>
+                <tr>
+                    <th>Cedula/Ruc</th>
+                    <th>Nombre</th>
+                    <th>Fecha</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let auxFacturas of facturas">
+                    <td>{{auxFacturas.cliente.cedulaRuc}}</td>
+                    <td>{{auxFacturas.cliente.nombre}}</td>
+                    <td>{{auxFacturas.fecha| date:'dd/mm/yyyy'}}</td>
+                    <td>{{auxFacturas.total}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+  </div>
+
+  <!-- Crear factura -->
+  <div *ngIf="abrirModalRegistrarFacturasSelector" class="modal-overlay">
+      <div class="modal-content">
+        <a class="close-button" (click)="cierraModalRegistrarFctura(true)">&times;</a>
+        <app-crear-factura (facturaCreada)="cierraModalRegistrarFctura($event)"></app-crear-factura>
+      </div>
+    </div>
+
+  
+  
+
+      

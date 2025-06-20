@@ -1,0 +1,12 @@
+<div class="form-container">
+    <h2>Crear categoria</h2>
+    <form [formGroup]="categoriaForm">
+      <div class="form-group">
+        <label for="nombreCategoria">Nombre de la categoria</label>
+        <input formControlName="nombreCategoria" type="text" id="nombreCategoria" placeholder="Ingrese el nombre" />
+      </div>
+  
+      <button (click)="registarCategoria()" class="btn-submit">Crear categoria</button>
+    </form>
+  </div>
+  

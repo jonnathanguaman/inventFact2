@@ -1,0 +1,48 @@
+<div class="form-container">
+  <h2>Crear Producto</h2>
+  <form [formGroup]="productoForm">
+    <div class="form-group">
+      <label for="nombreProducto">Nombre del Producto</label>
+      <input formControlName="nombreProducto" type="text" id="nombreProducto" placeholder="Ingrese el nombre" />
+    </div>
+
+    <div class="form-group">
+      <label for="cantidadDisponible">Cantidad Disponible</label>
+      <input formControlName="cantidadDisponoble" type="number" id="cantidadDisponible" placeholder="Ingrese cantidad" />
+    </div>
+
+    <div class="form-group">
+      <label for="disponibilidad">Disponibilidad</label>
+      <select formControlName="disponibilidad" id="disponibilidad">
+        <option value="true">Disponible</option>
+        <option value="false">No Disponible</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="visible">¿Visible?</label>
+      <input formControlName="visible" type="checkbox" id="visible" />
+    </div>
+
+    <div class="form-group">
+      <label for="precio">Precio</label>
+      <input formControlName="precio" type="number" id="precio" placeholder="Ingrese el precio" />
+    </div>
+
+    <div class="form-group">
+      <label for="proveedor">Proveedor</label>
+      <select formControlName="proveedor" id="proveedor">
+        <option *ngFor="let auxproveedor of proveedores" [ngValue]="auxproveedor">{{auxproveedor.nombreProveedor}}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="categoria">Ingrese la categoria a la que pertenece</label>
+      <select formControlName="categoria" id="categoria">
+        <option *ngFor="let auxcategorias of categorias" [ngValue]="auxcategorias">{{auxcategorias.nombreCategoria}}</option>
+      </select>
+    </div>
+
+    <button (click)="crearProducto()" class="btn-submit">Crear Producto</button>
+  </form>
+</div>

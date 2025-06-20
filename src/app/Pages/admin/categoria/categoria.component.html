@@ -1,0 +1,38 @@
+<div class="productos-container">
+    <h2 class="table-title">Categoria</h2>
+  
+    <div class="top-bar">
+        <button (click)="abrirModalCrearProveedor()" class="btn-crear">Crear categoria</button>
+        <input type="text" id="search" class="search-input" placeholder="Buscar categoria..." />
+    </div>
+  
+    <div class="table-wrapper">
+        <table class="product-table">
+            <thead>
+                <tr>
+                    <th>Nombre de la categoria</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let auxcategoria of categoria">
+                    <td>{{auxcategoria.nombreCategoria}}</td>
+                    <td>
+                        <button class="edit-btn">Editar</button>
+                        <button (click)="eliminarProducto(auxcategoria.idCategoria)" class="delete-btn">Eliminar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+  </div>
+  
+  
+  <!-- Crear factura -->
+  <div *ngIf="abrirModalCrearProveedorSelector" class="modal-overlay">
+      <div class="modal-content">
+        <a class="close-button" (click)="cierraModalProveedorCreado(true)">&times;</a>
+        <app-crear-categoria (categoriaCreado)="cierraModalProveedorCreado($event)"></app-crear-categoria>
+      </div>
+    </div>
+    

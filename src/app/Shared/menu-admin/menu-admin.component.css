@@ -1,0 +1,74 @@
+.flex {
+    display: flex;
+  }
+
+  .form-logo {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+
+  .form-logo img {
+      width: 60%;
+      height: auto;
+  }
+  .sidebar {
+    width: 10em;
+    background-color: #2d3748;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    padding: 25px 15px;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+    z-index: 50;
+  }
+
+  .sidebar.active {
+    transform: translateX(0);
+  }
+
+  .brand {
+    font-size: 28px;
+    font-weight: bold;
+    color: #63b3ed;
+    margin-bottom: 0.5em;
+    display: block;
+    text-align: center; 
+  }
+
+  .menu {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    cursor: pointer;
+  }
+
+  .menu-item {
+    font-size: 18px;
+    color: #edf2f7;
+    text-decoration: none;
+    padding: 10px 5px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+
+  .menu-item:hover {
+    background-color: #4a5568;
+    transform: translateX(5px);
+  }
+
+  .menu-item .icon {
+    font-size: 20px;
+  }
+
+  /* Mobile responsiveness */
+  @media (min-width: 768px) {
+    .sidebar {
+      transform: translateX(0);
+    }
+  }

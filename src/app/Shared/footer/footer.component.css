@@ -1,0 +1,11 @@
+.footer {
+    width: 100%;
+    margin-top: 15%;
+    background-color: #2d3748; /* Un tono oscuro elegante */
+    color: #ecf0f1; /* Texto claro */
+    text-align: center;
+    padding: 15px 0;
+    font-size: 14px;
+    font-weight: bold;
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1); /* Sombra superior para efecto 3D */
+}

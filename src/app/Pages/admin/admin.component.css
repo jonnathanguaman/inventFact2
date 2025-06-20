@@ -1,0 +1,10 @@
+.container{
+    display: grid;
+    grid-template-columns: 0.10fr 1fr;
+    gap: 4%;
+    
+}
+.container-item{
+    border-radius: 10px;
+    height: 140%;
+}

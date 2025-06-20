@@ -1,0 +1,40 @@
+<div class="productos-container">
+    <h2 class="table-title">Proveedor</h2>
+  
+    <div class="top-bar">
+        <button (click)="abrirModalCrearProveedor()" class="btn-crear">Registrar proveedor</button>
+        <input type="text" id="search" class="search-input" placeholder="Buscar proveedor..." />
+    </div>
+  
+    <div class="table-wrapper">
+        <table class="product-table">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Ruc</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let auxproveedor of proveedor">
+                    <td>{{auxproveedor.nombreProveedor}}</td>
+                    <td>{{auxproveedor.rucProveedor}}</td>
+                    <td>
+                        <button class="edit-btn">Editar</button>
+                        <button (click)="eliminarProducto(auxproveedor.idProveedor)" class="delete-btn">Eliminar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+  </div>
+  
+  
+  <!-- Crear factura -->
+  <div *ngIf="abrirModalCrearProveedorSelector" class="modal-overlay">
+      <div class="modal-content">
+        <a class="close-button" (click)="cierraModalProveedorCreado(true)">&times;</a>
+        <app-registrar-proveedor (proveedorCreado)="cierraModalProveedorCreado($event)"></app-registrar-proveedor>
+      </div>
+    </div>
+    

@@ -1,0 +1,48 @@
+<div class="form-container">
+  <h2>Crear Producto</h2>
+  <form [formGroup]="facturaForm">
+    <div class="form-group">
+      <label for="numeroFactura">Numero de factura</label>
+      <input formControlName="numeroFactura" type="text" id="numeroFactura" placeholder="Ingrese el numero factura" />
+    </div>
+
+    <div class="form-group">
+      <label for="fechaEmision">Fecha de emisión</label>
+      <input formControlName="fechaEmision" type="date" id="fechaEmision"/>
+    </div>
+
+    <div class="form-group">
+        <label for="total">Total de la factura</label>
+        <input formControlName="total" type="number" id="total"/>
+    </div>
+
+    <div class="form-group">
+        <label for="estadoDePago">Factuta cancelada</label>
+        <input formControlName="estadoDePago" type="checkbox" id="estadoDePago" />
+    </div>
+
+    <div class="form-group">
+        <label for="productosRegistrados">¿Los productos han sido registrados?</label>
+        <input formControlName="productosRegistrados" type="checkbox" id="productosRegistrados" />
+      </div>
+
+    <div class="form-group">
+      <label for="visible">¿Visible?</label>
+      <input formControlName="visible" type="checkbox" id="visible" />
+    </div>
+
+    <div class="form-group">
+        <label for="proveedor">Proveedor</label>
+        <select formControlName="proveedor" id="proveedor">
+          <option *ngFor="let auxproveedor of proveedores" [ngValue]="auxproveedor">{{auxproveedor.nombreProveedor}}</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+      <label for="file1" class="file-label">Sube la factura en pdf</label>
+      <input (change)="onFileSelected($event)" type="file" id="file1" class="file-input">
+    </div>
+
+    <button (click)="registrarFactura()" class="btn-submit">Registrar factura</button>
+  </form>
+</div>

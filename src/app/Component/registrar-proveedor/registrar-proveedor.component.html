@@ -1,0 +1,17 @@
+<div class="form-container">
+    <h2>Registrar proveedor</h2>
+    <form [formGroup]="proveedorForm">
+      <div class="form-group">
+        <label for="nombreProveedor">Nombre del proveedor</label>
+        <input formControlName="nombreProveedor" type="text" id="nombreProducto" placeholder="Ingrese el nombre" />
+      </div>
+  
+      <div class="form-group">
+        <label for="rucProveedor">Ruc del proveedor</label>
+        <input formControlName="rucProveedor" type="text" id="nombreProducto" placeholder="Ingrese el nombre" />
+      </div>
+  
+      <button (click)="registarProveedor()" class="btn-submit">Registrar proveedor</button>
+    </form>
+  </div>
+  
