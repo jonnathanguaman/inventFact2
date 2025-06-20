@@ -1,17 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductoService } from '../../../Services/producto/producto.service';
+import { ProductoService, ProductoMongo } from '../../../Services/producto/producto.service';
 import { Producto } from '../../../Services/producto/procuto';
-import { AlertService } from '../../../Services/alertas/alertService.service'; 
+import { AlertService } from '../../../Services/alertas/alertService.service';
 
 @Component({
   selector: 'app-inventario',
   templateUrl: './inventario.component.html',
   styleUrl: './inventario.component.css'
 })
-export class InventarioComponent implements OnInit {
-  
+export class InventarioComponent implements OnInit {  
   abrirModalCrearProductoSelector:boolean = false;
-  productos:Producto[]=[]
+  productos:ProductoMongo[]=[] // Cambiado a ProductoMongo
 
   abrirModalCrearProducto(){
     this.abrirModalCrearProductoSelector = true
@@ -33,9 +32,9 @@ export class InventarioComponent implements OnInit {
   ngOnInit(): void {
     this.obtenerProductos()
   }
-
   obtenerProductos(){
-    this.productoService.obtenerProductos().subscribe({
+    // Cambiado a método MongoDB
+    this.productoService.obtenerProductosMongo().subscribe({
       next:(productos)=>{
         this.productos = productos
         console.log(productos)
@@ -47,12 +46,12 @@ export class InventarioComponent implements OnInit {
         console.log("Datos recuperados")
       } 
     })
-  }
-  
-  eliminarProducto(idProducto:number){
+  }  
+  eliminarProducto(idProducto:string){ // Cambiado a string para MongoDB
     this.alertService.mensajeEmergente('Eliminar','¿Estas seguro que deseas eliminar el producto?','warning').then((confirmacio)=>{
       if(confirmacio){
-        this.productoService.eliminarProducto(idProducto).subscribe({
+        // Cambiado a método MongoDB
+        this.productoService.eliminarProductoMongo(idProducto).subscribe({
           next:()=>{
             this.alertService.mensajeToast('success','Producto eliminado','')
           },

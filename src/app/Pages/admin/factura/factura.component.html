@@ -21,16 +21,15 @@
                     <th>Acciones</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr *ngFor="let auxFacturas of facturas">
+            <tbody>                <tr *ngFor="let auxFacturas of facturas">
                     <td>{{auxFacturas.numeroFactura}}</td>
-                    <td>{{auxFacturas.fechaEmision | date:'dd/mm/yyyy'}}</td>
+                    <td>{{auxFacturas.fechaEmision | date:'dd/MM/yyyy'}}</td>
                     <td>{{auxFacturas.total}}</td>
                     <td>{{auxFacturas.estadoDePago}}</td>
                     <td>{{auxFacturas.productosRegistrados }}</td>
                     <td>{{auxFacturas.visible}}</td>
-                    <td>{{auxFacturas.proveedor.nombreProveedor}}</td>
-                    <td><a class="view-pdf-btn" (click)="verPdf(auxFacturas.urlPdf)">📄</a></td>
+                    <td>{{auxFacturas.proveedorId}}</td>
+                    <td><a class="view-pdf-btn" (click)="verPdf(auxFacturas.urlPdf)" *ngIf="auxFacturas.urlPdf">📄</a></td>
                     <td>
                         <button class="edit-btn">Editar</button>
                         <button class="delete-btn">Eliminar</button>

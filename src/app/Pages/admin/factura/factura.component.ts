@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FacturaService } from '../../../Services/factura/factura.service';
+import { FacturaService, FacturaProveedorMongo } from '../../../Services/factura/factura.service';
 import { Factura } from '../../../Services/factura/factura';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { environment } from '../../../../enviroment/enviroment';
@@ -12,7 +12,7 @@ import { environment } from '../../../../enviroment/enviroment';
 export class FacturaComponent implements OnInit {
   
   abrirModalRegistrarFacturasSelector:boolean = false;
-  facturas:Factura[]=[]
+  facturas:FacturaProveedorMongo[]=[] // Cambiado a FacturaProveedorMongo
   urlhost = environment.urlhost
   mostrarPdf = false;
 
@@ -52,7 +52,8 @@ export class FacturaComponent implements OnInit {
   }
 
   obtenerFacturas(){
-    this.facturaService.obtenerFacturas().subscribe({
+    // Cambiado a método MongoDB
+    this.facturaService.obtenerFacturasProveedoresMongo().subscribe({
       next:(facturas)=>{
         this.facturas = facturas
         console.log(facturas)

@@ -16,12 +16,10 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let auxproveedor of proveedor">
-                    <td>{{auxproveedor.nombreProveedor}}</td>
-                    <td>{{auxproveedor.rucProveedor}}</td>
+                <tr *ngFor="let auxproveedor of proveedor">                    <td>{{auxproveedor.nombreProveedor}}</td>                    <td>{{auxproveedor.rucProveedor}}</td>
                     <td>
                         <button class="edit-btn">Editar</button>
-                        <button (click)="eliminarProducto(auxproveedor.idProveedor)" class="delete-btn">Eliminar</button>
+                        <button *ngIf="auxproveedor.id" (click)="eliminarProducto(auxproveedor.id)" class="delete-btn">Eliminar</button>
                     </td>
                 </tr>
             </tbody>

@@ -16,9 +16,14 @@
         <input formControlName="total" type="number" id="total"/>
     </div>
 
-    <div class="form-group">
-        <label for="estadoDePago">Factuta cancelada</label>
-        <input formControlName="estadoDePago" type="checkbox" id="estadoDePago" />
+    <div class="form-group">        <label for="estadoDePago">Estado de Pago</label>
+        <select formControlName="estadoDePago" id="estadoDePago">
+          <option value="PENDIENTE">Pendiente</option>
+          <option value="PAGADA">Pagada</option>
+          <option value="VENCIDA">Vencida</option>
+          <option value="CANCELADA">Cancelada</option>
+          <option value="EN_PROCESO">En Proceso</option>
+        </select>
     </div>
 
     <div class="form-group">
@@ -29,12 +34,10 @@
     <div class="form-group">
       <label for="visible">¿Visible?</label>
       <input formControlName="visible" type="checkbox" id="visible" />
-    </div>
-
-    <div class="form-group">
-        <label for="proveedor">Proveedor</label>
+    </div>    <div class="form-group">        <label for="proveedor">Proveedor</label>
         <select formControlName="proveedor" id="proveedor">
-          <option *ngFor="let auxproveedor of proveedores" [ngValue]="auxproveedor">{{auxproveedor.nombreProveedor}}</option>
+          <option value="" disabled selected>Seleccione un proveedor</option>
+          <option *ngFor="let auxproveedor of proveedores" [ngValue]="auxproveedor.id">{{auxproveedor.nombreProveedor}}</option>
         </select>
     </div>
 

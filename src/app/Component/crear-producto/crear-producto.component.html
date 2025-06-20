@@ -22,25 +22,28 @@
     <div class="form-group">
       <label for="visible">¿Visible?</label>
       <input formControlName="visible" type="checkbox" id="visible" />
-    </div>
-
-    <div class="form-group">
+    </div>    <div class="form-group">
       <label for="precio">Precio</label>
       <input formControlName="precio" type="number" id="precio" placeholder="Ingrese el precio" />
     </div>
 
     <div class="form-group">
+      <label for="fechaIngreso">Fecha de Ingreso</label>
+      <input formControlName="fechaIngreso" type="date" id="fechaIngreso" />
+    </div><div class="form-group">
       <label for="proveedor">Proveedor</label>
       <select formControlName="proveedor" id="proveedor">
-        <option *ngFor="let auxproveedor of proveedores" [ngValue]="auxproveedor">{{auxproveedor.nombreProveedor}}</option>
+        <option value="" disabled selected>Seleccione un proveedor</option>
+        <option *ngFor="let auxproveedor of proveedores" [ngValue]="auxproveedor.id">{{auxproveedor.nombreProveedor}}</option>
       </select>
-    </div>
-
-    <div class="form-group">
+    </div>    <div class="form-group">
       <label for="categoria">Ingrese la categoria a la que pertenece</label>
       <select formControlName="categoria" id="categoria">
-        <option *ngFor="let auxcategorias of categorias" [ngValue]="auxcategorias">{{auxcategorias.nombreCategoria}}</option>
+        <option value="" disabled selected>Seleccione una categoría</option>
+        <option *ngFor="let auxcategorias of categorias" [ngValue]="auxcategorias.idCategoria">{{auxcategorias.nombreCategoria}}</option>
+        <option *ngIf="categorias.length === 0" value="" disabled>No hay categorías disponibles</option>
       </select>
+      <small *ngIf="categorias.length === 0" class="text-warning">Las categorías no están disponibles actualmente</small>
     </div>
 
     <button (click)="crearProducto()" class="btn-submit">Crear Producto</button>

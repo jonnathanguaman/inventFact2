@@ -7,17 +7,17 @@ Esta guía describe cómo migrar los servicios Angular del proyecto `inventFact2
 ## 🔗 Endpoints Disponibles
 
 ### Productos MongoDB
-- **Base URL**: `http://localhost:8081/api/mongo/productos`
+- **Base URL**: `http://localhost:8080/api/mongo/productos`
 - **GET** `/` - Obtener todos los productos
 - **POST** `/` - Crear nuevo producto
 
 ### Proveedores MongoDB
-- **Base URL**: `http://localhost:8081/api/mongo/proveedores`
+- **Base URL**: `http://localhost:8080/api/mongo/proveedores`
 - **GET** `/` - Obtener todos los proveedores
 - **POST** `/` - Crear nuevo proveedor
 
 ### Facturas de Proveedores MongoDB
-- **Base URL**: `http://localhost:8081/api/mongo/facturas-proveedores`
+- **Base URL**: `http://localhost:8080/api/mongo/facturas-proveedores`
 - **GET** `/` - Obtener todas las facturas
 - **GET** `/{id}` - Obtener factura por ID
 - **GET** `/proveedor/{proveedorId}` - Obtener facturas por proveedor
@@ -32,7 +32,7 @@ Esta guía describe cómo migrar los servicios Angular del proyecto `inventFact2
 - **GET** `/{id}/detalles` - Obtener detalles de una factura
 
 ### Detalles de Factura Proveedor MongoDB
-- **Base URL**: `http://localhost:8081/api/mongo/detalle-factura-proveedor`
+- **Base URL**: `http://localhost:8080/api/mongo/detalle-factura-proveedor`
 - **GET** `/` - Obtener todos los detalles
 - **GET** `/{id}` - Obtener detalle por ID
 - **GET** `/factura/{facturaId}` - Obtener detalles por factura
@@ -736,7 +736,7 @@ Para probar los endpoints, puedes usar los siguientes JSON de ejemplo:
 ## 🚀 Instrucciones de Implementación
 
 ### 1. Verificar Backend
-Asegúrate de que el backend esté ejecutándose en `http://localhost:8081` con los endpoints MongoDB disponibles.
+Asegúrate de que el backend esté ejecutándose en `http://localhost:8080` con los endpoints MongoDB disponibles.
 
 ### 2. Instalar Dependencias Angular
 ```bash

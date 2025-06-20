@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { AlertService } from '../../../Services/alertas/alertService.service';
-import { ProveedorService } from '../../../Services/proveedor/proveedor.service';
+import { ProveedorService, ProveedorMongo } from '../../../Services/proveedor/proveedor.service';
 import { Proveedor } from '../../../Services/proveedor/proveedor';
 
 @Component({
@@ -8,9 +8,8 @@ import { Proveedor } from '../../../Services/proveedor/proveedor';
   templateUrl: './proveedor.component.html',
   styleUrl: './proveedor.component.css'
 })
-export class ProveedorComponent {
-  abrirModalCrearProveedorSelector:boolean = false;
-  proveedor:Proveedor[]=[]
+export class ProveedorComponent {  abrirModalCrearProveedorSelector:boolean = false;
+  proveedor:ProveedorMongo[]=[] // Cambiado a ProveedorMongo
 
   abrirModalCrearProveedor(){
     this.abrirModalCrearProveedorSelector = true
@@ -32,9 +31,9 @@ export class ProveedorComponent {
   ngOnInit(): void {
     this.obtenerProveedor()
   }
-
   obtenerProveedor(){
-    this.proveedorService.obtenerProveedors().subscribe({
+    // Cambiado a método MongoDB
+    this.proveedorService.obtenerProveedoresMongo().subscribe({
       next:(productos)=>{
         this.proveedor = productos
         console.log(productos)
@@ -47,11 +46,11 @@ export class ProveedorComponent {
       } 
     })
   }
-  
-  eliminarProducto(idProducto:number){
+    eliminarProducto(idProducto:string){ // Cambiado a string para MongoDB
     this.alertService.mensajeEmergente('Eliminar','¿Estas seguro que deseas eliminar el proveedor?','warning').then((confirmacio)=>{
       if(confirmacio){
-        this.proveedorService.eliminarProveedor(idProducto).subscribe({
+        // Cambiado a método MongoDB
+        this.proveedorService.eliminarProveedorMongo(idProducto).subscribe({
           next:()=>{
             this.alertService.mensajeToast('success','Proveedor eliminado','')
           },

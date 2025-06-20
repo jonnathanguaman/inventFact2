@@ -1,13 +1,13 @@
 <!-- Mejorado: crear-factura.component.html -->
-<h2>Crear Factura</h2>
+<h2>Crear Factura de Proveedor</h2>
 
 <form [formGroup]="form" (ngSubmit)="enviarFactura()" class="factura-form">
   <div class="form-group">
-    <label for="cliente">Cliente:</label>
-    <select id="cliente" formControlName="clienteId" required>
-      <option value="" disabled selected>Seleccione un cliente</option>
-      <option *ngFor="let cliente of clientes" [value]="cliente.id">
-        {{ cliente.nombre }} - {{ cliente.cedulaRuc }}
+    <label for="proveedor">Proveedor:</label>
+    <select id="proveedor" formControlName="proveedorId" required>
+      <option value="" disabled selected>Seleccione un proveedor</option>
+      <option *ngFor="let proveedor of proveedores" [value]="proveedor.id">
+        {{ proveedor.nombreProveedor }} - {{ proveedor.rucProveedor }}
       </option>
     </select>
   </div>
@@ -16,12 +16,12 @@
 
   <div formArrayName="detalles">
     <div *ngFor="let detalle of detalles.controls; let i = index" [formGroupName]="i" class="detalle-row">
-      <div class="form-group">
-        <label for="producto-{{i}}">Producto:</label>
-        <select id="producto-{{i}}" formControlName="productoId">
+      <div class="form-group">        <label for="producto-{{i}}">Producto:</label>        <select id="producto-{{i}}" formControlName="productoId">
           <option value="" disabled selected>Seleccione un producto</option>
-          <option *ngFor="let p of productos" [value]="p.idProducto">
-            {{ p.nombreProducto }} - ${{ p.precio }}
+          <option *ngFor="let p of productos" [value]="p.id">
+            {{ p.nombreProducto || 'Producto sin nombre' }} - 
+            ${{ p.precio || 'Sin precio' }}
+            <span *ngIf="!p.nombreProducto || !p.precio"> (Datos incompletos)</span>
           </option>
         </select>
       </div>

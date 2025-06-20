@@ -11,13 +11,12 @@
           <thead>
               <tr>
                   <th>Nombre</th>
-                  <th>Cantidad</th>
-                  <th>Disponibilidad</th>
+                  <th>Cantidad</th>                  <th>Disponibilidad</th>
                   <th>Precio</th>
                   <th>Fecha de registro</th>
                   <th>Visible</th>
-                  <th>Proveedor</th>
-                  <th>Categoria</th>
+                  <th>Proveedor ID</th>
+                  <th>Categoria ID</th>
                   <th>Acciones</th>
               </tr>
           </thead>
@@ -26,14 +25,12 @@
                   <td>{{auxproductos.nombreProducto}}</td>
                   <td>{{auxproductos.cantidadDisponoble}}</td>
                   <td>{{auxproductos.disponibilidad}}</td>
-                  <td>{{auxproductos.precio}}</td>
-                  <td>{{auxproductos.fechaIngreso | date:'dd/mm/yyyy'}}</td>
-                  <td>{{auxproductos.visible}}</td>
-                  <td>{{auxproductos.proveedor.nombreProveedor}}</td>
-                  <td>{{auxproductos.categoria.nombreCategoria}}</td>
+                  <td>{{auxproductos.precio}}</td>                  <td>{{auxproductos.fechaIngreso | date:'dd/MM/yyyy'}}</td>
+                  <td>{{auxproductos.visible}}</td>                  <td>{{auxproductos.proveedorId}}</td>
+                  <td>{{auxproductos.categoriaId}}</td>
                   <td>
                       <button class="edit-btn">Editar</button>
-                      <button (click)="eliminarProducto(auxproductos.idProducto)" class="delete-btn">Eliminar</button>
+                      <button *ngIf="auxproductos.id" (click)="eliminarProducto(auxproductos.id)" class="delete-btn">Eliminar</button>
                   </td>
               </tr>
           </tbody>
